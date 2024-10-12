@@ -1,23 +1,24 @@
+package linkedList.java;
 //SinglyLinearLinkedList
 
-class Node {
+class Node1 {
     int data;
-    Node next;
-    Node(int data) {
+    Node1 next;
+    Node1(int data) {
         this.data = data;
         this.next = null;
     }
 }
 
-class LinkedList {
-    public Node First;
+class LinkedList1 {
+    public Node1 First;
 
-    public LinkedList() {
+    public LinkedList1() {
         First = null;
     }
 
     public void insertFirst(int no) {
-        Node newn = new Node(no);
+        Node1 newn = new Node1(no);
         if (First == null) {
             First = newn;
         } else {
@@ -27,8 +28,8 @@ class LinkedList {
     }
 
     public void insertLast(int no) {
-        Node newn = new Node(no);
-        Node temp = First;
+        Node1 newn = new Node1(no);
+        Node1 temp = First;
         if (First == null) {
             First = newn;
         } else {
@@ -51,8 +52,8 @@ class LinkedList {
         } else if (iPos == nodeCount+1) {
             insertLast(no);
         } else {
-            Node temp = First;
-            Node newn = new Node(no);
+            Node1 temp = First;
+            Node1 newn = new Node1(no);
             for(int i = 1; i < iPos - 1; i++) {
                 temp = temp.next;
             }
@@ -72,7 +73,7 @@ class LinkedList {
     }
 
     public void deleteLast() {
-        Node temp = First;
+        Node1 temp = First;
         if (First == null) {
             return;
         } else if (temp.next == null) {
@@ -97,7 +98,7 @@ class LinkedList {
         } else if (iPos == nodeCount) {
             deleteLast();
         } else {
-            Node temp = First;
+            Node1 temp = First;
             for(int i = 1; i < (iPos -1); i++) {
                 temp = temp.next;
             }
@@ -106,7 +107,7 @@ class LinkedList {
     }
 
     public void display() {
-        Node temp = First;
+        Node1 temp = First;
         while (temp != null) {
             System.out.print(" | "+temp.data+" | -> ");
             temp = temp.next;
@@ -116,7 +117,7 @@ class LinkedList {
 
     public int count() {
         int iCnt = 0;
-        Node temp = First;
+        Node1 temp = First;
         while (temp != null) {
             iCnt++;
             temp = temp.next;
@@ -126,7 +127,7 @@ class LinkedList {
 }
 public class SinglyLinearLinkedList {
     public static void main(String[] args) {
-        LinkedList linkedList = new LinkedList();
+        LinkedList1 linkedList = new LinkedList1();
 
         linkedList.insertFirst(10);
         linkedList.insertFirst(20);
@@ -146,6 +147,6 @@ public class SinglyLinearLinkedList {
 
         linkedList.display();
 
-        System.out.println("Number of Nodes in LinkedList are : "+linkedList.count());
+        System.out.println("Number of Node1s in LinkedList are : "+linkedList.count());
     }   
 }

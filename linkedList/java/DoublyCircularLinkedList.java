@@ -1,48 +1,59 @@
-//SinglyCircularLinkedList
+package linkedList.java;
+//DoublyCircularLinkedList
 
-class Node {
+class Node4 {
     int data;
-    Node next;
-    Node(int data) {
+    Node4 prev;
+    Node4 next;
+    Node4(int data) {
         this.data = data;
+        this.prev = null;
         this.next = null;
     }
 }
 
-class LinkedList {
-    public Node First;
-    public Node Last;
+class LinkedList4 {
+    public Node4 First;
+    public Node4 Last;
 
-    public LinkedList() {
+    public LinkedList4() {
         First = null;
         Last = null;
     }
 
     public void insertFirst(int no) {
-        Node newn = new Node(no);
+        Node4 newn = new Node4(no);
         if ((First == null) && (Last == null)) {
             First = Last = newn;
+            First.prev = Last;
+            Last.next = First;
         } else {
             newn.next = First;
-            First = newn;            
+            First.prev = newn;
+            First = newn;
+            First.prev = Last;
+            Last.next = First;
         }
-        Last.next = First;
     }
 
     public void insertLast(int no) {
-        Node newn = new Node(no);
+        Node4 newn = new Node4(no);
         if ((First == null) && (Last == null)) {
-            First = newn;
+            First = Last = newn;
+            First.prev = Last;
+            Last.next = First;
         } else {
+            newn.next = First;
             Last.next = newn;
             Last = newn;
+            Last.next = First;
+            First.prev = Last;
         }
-        Last.next = First;
     }
 
     public void insertAtPos(int no, int iPos) {
         int nodeCount = count();
-        if ((iPos < 1) && (iPos > (nodeCount+1))) {
+        if ((iPos < 1) && (iPos > nodeCount+1)) {
             System.out.println("Invalid Position");
             return;
         }
@@ -52,13 +63,16 @@ class LinkedList {
         } else if (iPos == nodeCount+1) {
             insertLast(no);
         } else {
-            Node newn = new Node(no);
-            Node temp = First;
-            for(int i = 1; i < (iPos -1); i++) {
+            Node4 newn = new Node4(no);
+            Node4 temp = First;
+            Node4 temp1 = null;
+            for(int i = 1; i < (iPos-1); i++) {
                 temp = temp.next;
             }
-            newn.next = temp.next;
-            temp.next = newn;
+            temp1 = temp.next.next;
+            newn.next = temp1;
+            temp.next.next = newn;
+            newn.prev = temp.next;
         }
     }
 
@@ -66,10 +80,11 @@ class LinkedList {
         if ((First == null) && (Last == null)) {
             return;
         } else if (First == Last) {
-            First = null;
+            First = Last = null;
         } else {
             First = First.next;
             Last.next = First;
+            First.prev = Last;
         }
     }
 
@@ -77,14 +92,16 @@ class LinkedList {
         if ((First == null) && (Last == null)) {
             return;
         } else if (First == Last) {
-            First = null;
+            First = Last = null;
         } else {
-            Node temp = First;
-            while(temp.next != Last) {
+            Node4 temp = First;
+            while (temp.next != Last) {
                 temp = temp.next;
             }
+            temp.next = First;
             Last = temp;
             Last.next = First;
+            First.prev = Last;
         }
     }
 
@@ -100,37 +117,43 @@ class LinkedList {
         } else if (iPos == nodeCount) {
             deleteLast();
         } else {
-            Node temp = First;
-            for(int i = 1; i < (iPos - 1); i++) {
+            Node4 temp = First;
+            Node4 temp1 = null;
+            for(int i = 1; i < (iPos -1); i++){
                 temp = temp.next;
             }
-            temp.next = temp.next.next;
+            temp1 = temp.next.next;
+            temp.next = temp1;
+            temp1.prev = temp.next;
         }
     }
 
+
+
     public void display() {
-        Node temp = First;
-        do {
-            System.out.print(" | "+temp.data+" | ");
+        Node4 temp = First;
+        System.out.print("NULL --><--");
+        do { 
+            System.out.print(" | "+temp.data+" | --><--");
             temp = temp.next;
-        } while(temp != First);
-        System.out.println();
+        } while (temp != First);
+        System.out.println(" NULL\n");
     }
 
     public int count() {
-        Node temp = First;
+        Node4 temp = First;
         int iCnt = 0;
-        do {
+        do { 
             iCnt++;
             temp = temp.next;
-        } while(temp != First);
+        } while (temp != First);
         return iCnt;
     }
 }
 
-public class SinglyCircularLinkedList {
+public class DoublyCircularLinkedList {
     public static void main(String[] args) {
-        LinkedList linkedList = new LinkedList();
+        LinkedList4 linkedList = new LinkedList4();
 
         linkedList.insertFirst(11);
         linkedList.insertFirst(21);
@@ -140,7 +163,7 @@ public class SinglyCircularLinkedList {
         linkedList.insertLast(51);
         linkedList.insertLast(61);
 
-        linkedList.insertAtPos(100, 4);
+        linkedList.insertAtPos(100, 3);
 
         linkedList.deleteFirst();
 
@@ -150,6 +173,6 @@ public class SinglyCircularLinkedList {
 
         linkedList.display();
 
-        System.out.println("Number of nodes in Linked list are : "+linkedList.count());
+        System.out.println("Number of nodes in linkedList are : "+linkedList.count());
     }
 }

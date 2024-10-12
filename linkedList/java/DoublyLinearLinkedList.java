@@ -1,25 +1,26 @@
+package linkedList.java;
 //DoublyLinearLinkedList
 
-class Node {
+class Node3 {
     int data;
-    Node prev;
-    Node next;
-    Node(int data) {
+    Node3 prev;
+    Node3 next;
+    Node3(int data) {
         this.data = data;
-        prev = null;
-        next = null;
+        this.prev = null;
+        this.next = null;
     }
 }
 
-class LinkedList {
-    public Node First;
+class LinkedList3 {
+    public Node3 First;
 
-    public LinkedList() {
+    public LinkedList3() {
         First = null;
     }
 
     public void insertFirst(int no) {
-        Node newn = new Node(no);
+        Node3 newn = new Node3(no);
         if(First == null) {
             First = newn;
         } else {
@@ -30,11 +31,11 @@ class LinkedList {
     }
 
     public void insertLast(int no) {
-        Node newn = new Node(no);
+        Node3 newn = new Node3(no);
         if(First == null) {
             First = newn;
         } else {
-            Node temp = First;
+            Node3 temp = First;
             while(temp.next != null) {
                 temp = temp.next;
             }
@@ -55,8 +56,8 @@ class LinkedList {
         } else if(iPos == nodeCount+1) {
             insertLast(no);
         } else {
-            Node newn = new Node(no);
-            Node temp = First;
+            Node3 newn = new Node3(no);
+            Node3 temp = First;
             for(int i = 1; i < (iPos - 1); i++) {
                 temp = temp.next;
             }
@@ -83,7 +84,7 @@ class LinkedList {
         } else if (First.next == null) {
             First = null;
         } else {
-            Node temp = First;
+            Node3 temp = First;
             while(temp.next.next != null) {
                 temp = temp.next;
             }
@@ -103,8 +104,8 @@ class LinkedList {
         } else if(iPos == nodeCount) {
             deleteLast();
         } else {
-            Node temp = First;
-            Node temp1 = null;
+            Node3 temp = First;
+            Node3 temp1 = null;
             for(int i = 1; i < (iPos-1); i++) {
                 temp = temp.next;
             }
@@ -115,7 +116,7 @@ class LinkedList {
     }
 
     public void display() {
-        Node temp = First;
+        Node3 temp = First;
         System.out.print("NULL --><--");
         while(temp != null) {
             System.out.print(" | "+temp.data+" | --><-- ");
@@ -125,7 +126,7 @@ class LinkedList {
     }
 
     public int count() {
-        Node temp = First;
+        Node3 temp = First;
         int iCnt = 0;
         while(temp != null) {
             iCnt++;
@@ -136,7 +137,7 @@ class LinkedList {
 }
 public class DoublyLinearLinkedList {
     public static void main(String[] args) {
-        LinkedList linkedList = new LinkedList();
+        LinkedList3 linkedList = new LinkedList3();
 
         linkedList.insertFirst(11);
         linkedList.insertFirst(21);
@@ -156,7 +157,6 @@ public class DoublyLinearLinkedList {
 
         linkedList.display();
 
-        System.out.println("Number of Nodes in Linked List are : "+linkedList.count());
-
+        System.out.println("Number of Node3s in Linked List are : "+linkedList.count());
     }
 }
