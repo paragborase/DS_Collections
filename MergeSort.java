@@ -47,7 +47,7 @@ class Result {
         merge(arr, low, mid, high);
     }
 }
-public class Sorting5 {
+public class MergeSort {
     public static void main(String[] args) {
         int[] arr = {3, 2, 4, 1, 3};
         int n = arr.length;
