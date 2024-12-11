@@ -14,7 +14,6 @@ public class Hashing4 {
         System.out.println("Enter the element of Array: ");
         for(int i = 0; i < arr.length; i++) {
             arr[i] = sobj.nextInt();
-            
         }
 
         //pre-compute
